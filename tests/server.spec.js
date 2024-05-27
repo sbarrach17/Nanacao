@@ -31,17 +31,17 @@ describe("Operaciones CRUD de cafes", () => {
   //   Prueba que la ruta POST /cafes agrega un nuevo café y devuelve un código 201
   it("Status Code 201, Nuevo café", async () => {
     const id = Math.floor(Math.random() * 999);
-    const producto = { id, nombre: "Cafe Mocca" }; 
+    const producto = { id, nombre: "Cafe Mocca" };
     const response = await request(server)
-      .post("/cafes")
-      .send(producto); 
-    expect(response.status).toBe(201); 
-    expect(response.body).toContainEqual(producto); 
+    .post("/cafes")
+    .send(producto);
+    const status = response.statusCode;
+    expect(status).toBe(201);
+    expect(response.body).toContainEqual(producto);
   });
-  
-  
-//   Prueba que la ruta PUT /cafes devuelve un status code 400 si intentas actualizar un
-//   café enviando un id en los parámetros que sea diferente al id dentro del payload.
+
+  //   Prueba que la ruta PUT /cafes devuelve un status code 400 si intentas actualizar un
+  //   café enviando un id en los parámetros que sea diferente al id dentro del payload.
   it("Status Code 400, parametros distintos", async () => {
     const id = 1;
     const cafe = { id, nombre: "Late" };
